@@ -47,19 +47,18 @@ module RedmineMorePreviews
               )
             else
               content_tag(:div, 
-                content_tag(:script, "$(document).ready(function() { $('#ajax-indicator').show()});".html_safe) +
+                content_tag(:script, "$(document).ready(function());".html_safe) +
                 content_tag(
                   :iframe,
                   "",
-                  { :style                => "position:absolute;top:0;left:0;width:95%;height:16px;",
+                  { :style                => "position:absolute;top:0;left:0;width:95%;height:100%;",
                     :seamless             => "seamless",
                     :scrolling            => "no",
                     :frameborder          => "0",
                     :allowtransparency    => "true",
                     :title                => filename,
-                    :src                  => path,
-                    :id                   => 'preview_frame',
-                    :onload               => "$(document).ready(function() {$('#preview_frame').css('height', $(window).height())});".html_safe 
+                    :src                  => '/pdfjs/web/viewer.html?file='+path,
+                    :id                   => 'preview_frame'
                                              
                    }.merge(options)
                 ),
